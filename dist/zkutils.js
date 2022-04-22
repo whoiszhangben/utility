@@ -17,28 +17,36 @@ return /******/ (() => { // webpackBootstrap
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "parseUrlParam": () => (/* binding */ parseUrlParam),
 /* harmony export */   "test": () => (/* binding */ test)
 /* harmony export */ });
 const parseUrlParam = function (url, param) {
-	const searchIndex = url.indexOf("?");
-	const hashIndex = url.indexOf("#");
-	if (hashIndex > -1) {
-		url = url.substr(0, hashIndex);
-	}
-	const searchParams = url.slice(searchIndex + 1).split("&");
-	for (let i = 0; i < searchParams.length; i += 1) {
-		const items = searchParams[i].split("=");
-		if (items[0].trim().toLowerCase() === param.toLowerCase()) {
-			const tmp = searchParams[i];
-			return tmp.substr(tmp.indexOf("=") + 1);
-		}
-	}
-	return null;
+  const searchIndex = url.indexOf("?");
+  const hashIndex = url.indexOf("#");
+
+  if (hashIndex > -1) {
+    url = url.substr(0, hashIndex);
+  }
+
+  const searchParams = url.slice(searchIndex + 1).split("&");
+
+  for (let i = 0; i < searchParams.length; i += 1) {
+    const items = searchParams[i].split("=");
+
+    if (items[0].trim().toLowerCase() === param.toLowerCase()) {
+      const tmp = searchParams[i];
+      return tmp.substr(tmp.indexOf("=") + 1);
+    }
+  }
+
+  return null;
 };
-
 const test = "hello,world";
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  test,
+  parseUrlParam
+});
 
 /***/ })
 /******/ 	]);
@@ -102,13 +110,18 @@ var __webpack_exports__ = {};
 (() => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "utils": () => (/* binding */ utils)
+/* harmony export */   "add": () => (/* binding */ add),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
-const utils = {
-  url: _url__WEBPACK_IMPORTED_MODULE_0__
+function add(a, b) {
+  return a + b;
 }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  add,
+  url: _url__WEBPACK_IMPORTED_MODULE_0__
+});
 })();
 
 __webpack_exports__ = __webpack_exports__["default"];

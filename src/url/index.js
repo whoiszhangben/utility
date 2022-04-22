@@ -16,3 +16,8 @@ export const parseUrlParam = function (url, param) {
 };
 
 export const test = "hello,world";
+
+export default {
+	test,
+	parseUrlParam,
+};

@@ -48,6 +48,54 @@ const test = "hello,world";
   parseUrlParam
 });
 
+/***/ }),
+/* 2 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+class broadcastManager {
+  constructor() {
+    this._subscribeMap = {};
+  } // 订阅
+
+
+  subscribe(type, cb) {
+    if (this._subscribeMap[type]) {
+      if (!this._subscribeMap[type].includes(cb)) {
+        this._subscribeMap[type].push(cb);
+      }
+    }
+
+    this._subscribeMap[type] = [cb];
+  } // 取消订阅
+
+
+  unsubscribe(type, cb) {
+    if (!this._subscribeMap[type] || !this._subscribeMap[type].includes(cb)) {
+      return;
+    }
+
+    const idx = this._subscribeMap[type].indexOf(cb);
+
+    this._subscribeMap[type].splice(idx, 1);
+  } // 发布
+
+
+  publish(type, ...payload) {
+    if (!this._subscribeMap[type]) {
+      return;
+    }
+
+    this._subscribeMap[type].forEach(cb => cb(...payload));
+  }
+
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new broadcastManager());
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -114,13 +162,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _broadcast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+
 
 function add(a, b) {
   return a + b;
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   add,
-  url: _url__WEBPACK_IMPORTED_MODULE_0__
+  url: _url__WEBPACK_IMPORTED_MODULE_0__,
+  broadcastManager: _broadcast__WEBPACK_IMPORTED_MODULE_1__
 });
 })();
 

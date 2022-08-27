@@ -9,8 +9,9 @@ class broadcastManager {
 			if (!this._subscribeMap[type].includes(cb)) {
 				this._subscribeMap[type].push(cb);
 			}
+		} else {
+			this._subscribeMap[type] = [cb];
 		}
-		this._subscribeMap[type] = [cb];
 	}
 	// 取消订阅
 	unsubscribe(type, cb) {
